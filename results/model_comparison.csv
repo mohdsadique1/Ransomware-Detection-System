@@ -1,0 +1,5 @@
+Model,Accuracy,Precision,Recall,F1-Score
+Random Forest,99.9,99.9,99.9,99.9
+CNN,99.97,99.97,99.97,99.97
+LSTM,99.95,99.95,99.95,99.95
+CNN-LSTM,99.98,99.98,99.98,99.98
