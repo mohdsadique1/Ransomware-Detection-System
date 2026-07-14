@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction History</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📜 Prediction History</h1>
+
+    {% if rows %}
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                {% for key in rows[0].keys() %}
+                    <th>{{ key }}</th>
+                {% endfor %}
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for row in rows %}
+
+            <tr>
+
+                {% for value in row.values() %}
+                    <td>{{ value }}</td>
+                {% endfor %}
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+
+    <h2 style="text-align:center; color:#ffcc00;">
+        No Prediction History Found
+    </h2>
+
+    {% endif %}
+
+    <br>
+
+    <a href="/">
+        <button type="button">
+            ⬅ Back to Dashboard
+        </button>
+    </a>
+
+    <br><br>
+
+    <a href="/download_csv">
+        <button type="button">
+            📥 Download CSV Report
+        </button>
+    </a>
+
+    <br><br>
+
+    <a href="/download_pdf">
+        <button type="button">
+            📄 Download PDF Report
+        </button>
+    </a>
+
+</div>
+
+</body>
+</html>

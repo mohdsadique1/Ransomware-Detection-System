@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ransomware Detection Dashboard</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🛡️ AI-Based Ransomware Detection Dashboard</h1>
+
+    <div class="card">
+
+        <form action="/predict"
+              method="POST"
+              enctype="multipart/form-data">
+
+            <label>Select Detection Model</label>
+
+            <select name="model">
+                <option>--Select--</option>
+                <option value="Random Forest">Random Forest</option>
+                <option value="CNN">CNN</option>
+                <option value="LSTM">LSTM</option>
+                <option value="CNN-LSTM">CNN-LSTM</option>
+
+            </select>
+
+            <br><br>
+
+            <label>Upload CSV Dataset</label>
+
+            <input
+                type="file"
+                name="file"
+                accept=".csv"
+                required>
+
+            <br><br>
+
+            <button type="submit">
+
+                🚀 Start Detection
+
+            </button>
+
+        </form>
+
+    </div>
+
+    {% if prediction %}
+
+    <div class="result">
+
+        <h2>Detection Summary</h2>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Total Samples</h3>
+                <h2>{{ total_samples }}</h2>
+            </div>
+
+            <div class="card">
+                <h3>Benign</h3>
+                <h2 class="success">{{ benign_count }}</h2>
+            </div>
+
+            <div class="card">
+                <h3>Ransomware</h3>
+                <h2 class="danger">{{ ransomware_count }}</h2>
+            </div>
+
+            <div class="card">
+                <h3>Model</h3>
+                <h2>{{ model }}</h2>
+            </div>
+
+            <div class="card">
+                <h3>Confidence</h3>
+                <h2>{{ confidence }}%</h2>
+            </div>
+
+            <div class="card">
+                <h3>Detection Time</h3>
+                <h2>{{ detection_time }} sec</h2>
+            </div>
+
+            <div class="card">
+                <h3>CPU Usage</h3>
+                <h2>{{ cpu }}%</h2>
+            </div>
+
+            <div class="card">
+                <h3>Memory Usage</h3>
+                <h2>{{ memory }} MB</h2>
+            </div>
+
+        </div>
+
+        <br>
+
+        {% if prediction=="Benign" %}
+
+        <div class="status success-box">
+
+            ✅ Final Result : <b>{{ prediction }}</b>
+
+        </div>
+
+        {% elif prediction=="Ransomware" %}
+
+        <div class="status danger-box">
+
+            🚨 Final Result : <b>{{ prediction }}</b>
+
+        </div>
+
+        {% else %}
+
+        <div class="status warning-box">
+
+            ⚠ Suspicious File
+
+        </div>
+
+        {% endif %}
+
+        <br>
+
+        <div class="buttons">
+
+            <a href="/history">
+                <button type="button">
+                    📜 Prediction History
+                </button>
+            </a>
+
+            <a href="/performance">
+
+                <button type="button">
+
+                 📊 Model Performance
+
+                </button>
+
+            </a>
+
+            <a href="/confusion">
+
+               <button type="button">
+
+                📊 Confusion Matrix
+
+               </button>
+
+            </a>
+            <a href="/about">
+               <button type="button">
+               📘 About Project
+               </button>
+            </a>
+
+
+            <a href="/download_csv">
+                <button type="button">
+                    📥 CSV Report
+                </button>
+            </a>
+
+            <a href="/download_pdf">
+                <button type="button">
+                    📄 PDF Report
+                </button>
+            </a>
+            <br><br>
+            <br><br>
+            <br><br>
+            <br><br>
+
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+</body>
+</html>

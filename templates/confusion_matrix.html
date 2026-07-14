@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confusion Matrix</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📊 Confusion Matrix Analysis</h1>
+
+<div class="card">
+<h2>Random Forest</h2>
+<img src="{{ url_for('static', filename='images/rf_confusion_matrix.png') }}" width="100%">
+</div>
+
+<div class="card">
+<h2>CNN</h2>
+<img src="{{ url_for('static', filename='images/cnn_confusion_matrix.png') }}" width="100%">
+</div>
+
+<div class="card">
+<h2>LSTM</h2>
+<img src="{{ url_for('static', filename='images/lstm_confusion_matrix.png') }}" width="100%">
+</div>
+
+<div class="card">
+<h2>CNN-LSTM</h2>
+<img src="{{ url_for('static', filename='images/cnn_lstm_confusion_matrix.png') }}" width="100%">
+</div>
+
+<br>
+
+<a href="/">
+<button>⬅ Back Dashboard</button>
+</a>
+
+</div>
+
+</body>
+</html>

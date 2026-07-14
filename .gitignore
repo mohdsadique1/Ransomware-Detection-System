@@ -1,11 +1,19 @@
 venv/
-.venv/
 __pycache__/
 *.pyc
 
-dataset/
+uploads/
+logs/
 
-models/*.keras
+reports/
+
 models/*.h5
+models/*.keras
+models/*.pkl
 
-.ipynb_checkpoints/
+dataset/
+*.csv
+
+.env
+.idea/
+.vscode/

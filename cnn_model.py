@@ -1,5 +1,6 @@
 import pandas as pd
 import time
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
@@ -121,7 +122,7 @@ model.save("models/cnn_model.keras")
 
 print("CNN Model Saved Successfully")
 
-import pandas as pd
+
 from sklearn.metrics import precision_score, recall_score, f1_score
 
 metrics = pd.DataFrame({
@@ -144,3 +145,24 @@ metrics.to_csv(
 )
 
 print("CNN Metrics Saved")
+os.makedirs("models", exist_ok=True)
+
+save_path = os.path.abspath("models/cnn_model.keras")
+print("Saving model to:", save_path)
+
+model.save(save_path)
+
+model.save("models/cnn_model.keras")
+print("CNN Model Saved Successfully")
+import os
+
+save_path = os.path.abspath("models/cnn_model.keras")
+print("\nSaving to:", save_path)
+
+try:
+    model.save(save_path)
+    print("✅ CNN Model Saved Successfully")
+    print("File Exists:", os.path.exists(save_path))
+except Exception as e:
+    print("❌ Error while saving model:")
+    print(e)
